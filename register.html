@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodStock Pro – Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="register-page">
+  <div class="stripe"></div>
+  <div class="stripe-bottom"></div>
+  <div class="bg register-bg"></div>
+  <div class="bg-overlay"></div>
+  <div class="floaters" id="floaters"></div>
+
+  <div class="card register-card">
+    <div class="logo-area">
+      <span class="logo-icon">🌮</span>
+      <div class="logo-title">FoodStock Pro</div>
+      <div class="logo-sub">Create Your Account</div>
+    </div>
+
+    <form id="regForm">
+      <div class="section-title">👤 Personal Information</div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <span class="input-icon">🏷️</span>
+          <input class="form-input" type="text" id="firstName" placeholder="John" required/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <span class="input-icon">🏷️</span>
+          <input class="form-input" type="text" id="lastName" placeholder="Doe" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <span class="input-icon">📧</span>
+        <input class="form-input" type="email" id="regEmail" placeholder="john@restaurant.com" required/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <span class="input-icon">📱</span>
+        <input class="form-input" type="tel" id="regPhone" placeholder="+91 98765 43210"/>
+      </div>
+
+      <div class="section-title">🏪 Restaurant Details</div>
+
+      <div class="form-group">
+        <label class="form-label">Restaurant / Outlet Name</label>
+        <span class="input-icon">🍔</span>
+        <input class="form-input" type="text" id="restaurantName" placeholder="My Burger Joint" required/>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Role</label>
+          <span class="input-icon">🎖️</span>
+          <select class="form-input" id="regRole" required>
+            <option value="">Select role</option>
+            <option value="Admin">Admin / Owner</option>
+            <option value="Manager">Manager</option>
+            <option value="Staff">Staff</option>
+            <option value="Auditor">Auditor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <span class="input-icon">👤</span>
+          <input class="form-input" type="text" id="regUsername" placeholder="johndoe" required/>
+        </div>
+      </div>
+
+      <div class="section-title">🔐 Security</div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <span class="input-icon">🔒</span>
+        <input class="form-input" type="password" id="regPass" placeholder="Min. 8 characters" required/>
+        <span class="password-toggle" onclick="togglePass('regPass',this)">👁️</span>
+        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        <div class="strength-text" id="strengthText">Enter a password</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <span class="input-icon">🔒</span>
+        <input class="form-input" type="password" id="regPass2" placeholder="Repeat password" required/>
+        <span class="password-toggle" onclick="togglePass('regPass2',this)">👁️</span>
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" id="agreeTerms" required/>
+        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of FoodStock Pro</span>
+      </div>
+
+      <button type="submit" class="btn-main yellow-btn">
+        <span class="btn-shine"></span>
+        🎉 Create My Account
+      </button>
+    </form>
+
+    <div class="nav-link">Already have an account? <a href="login.html">Sign in here</a></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

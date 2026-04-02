@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodStock Pro – Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+
+  <div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()" id="toggleBtn">◀</button>
+
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🍔</div>
+      <div class="sidebar-logo-text">FoodStock</div>
+    </div>
+
+    <nav style="flex:1;overflow-y:auto;padding:8px 0;">
+      <div class="nav-section">Main</div>
+      <a class="nav-item active" onclick="showPage('dashboard',this)">
+        <span class="nav-icon">📊</span><span class="nav-label">Dashboard</span>
+      </a>
+
+      <div class="nav-section">Inventory</div>
+      <a class="nav-item" onclick="showPage('products',this)">
+        <span class="nav-icon">🍔</span><span class="nav-label">Products</span>
+      </a>
+      <a class="nav-item" onclick="showPage('stock',this)">
+        <span class="nav-icon">📦</span><span class="nav-label">Stock Control</span>
+        <span class="nav-badge" id="lowStockBadge">0</span>
+      </a>
+      <a class="nav-item" onclick="showPage('orders',this)">
+        <span class="nav-icon">🛒</span><span class="nav-label">Purchase Orders</span>
+      </a>
+      <a class="nav-item" onclick="showPage('suppliers',this)">
+        <span class="nav-icon">🚚</span><span class="nav-label">Suppliers</span>
+      </a>
+
+      <div class="nav-section">Operations</div>
+      <a class="nav-item" onclick="showPage('sales',this)">
+        <span class="nav-icon">💰</span><span class="nav-label">Sales Tracker</span>
+      </a>
+      <a class="nav-item" onclick="showPage('reports',this)">
+        <span class="nav-icon">📈</span><span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" onclick="showPage('alerts',this)">
+        <span class="nav-icon">🔔</span><span class="nav-label">Alerts</span>
+        <span class="nav-badge" id="alertBadge">0</span>
+      </a>
+
+      <div class="nav-section">Settings</div>
+      <a class="nav-item" onclick="showPage('settings',this)">
+        <span class="nav-icon">⚙️</span><span class="nav-label">Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Admin</div>
+          <div class="user-role" id="userRole">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main" id="main">
+    <div class="stripe-top"></div>
+
+    <div class="topbar">
+      <div class="topbar-title" id="pageTitle">📊 Dashboard</div>
+
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="Search inventory..." id="globalSearch" oninput="globalSearchFn(this.value)"/>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn">🔔<span class="notif-dot"></span></button>
+        <button class="icon-btn" onclick="exportData()">📤</button>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page active" id="page-dashboard">
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="chart-box">
+          <div class="section-title">📊 Weekly Sales Overview</div>
+          <div class="chart-inner" id="salesChart"></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-products">
+        <div class="section-title">🍔 Products Catalog</div>
+        <div class="cards-grid" id="productsGrid"></div>
+      </div>
+
+      <div class="page" id="page-stock">
+        <div class="section-title">📦 Stock Control</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Unit</th>
+                <th>In Stock</th>
+                <th>Min Level</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="stockTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page" id="page-orders">
+        <div class="section-title">🛒 Purchase Orders</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Supplier</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page" id="page-suppliers">
+        <div class="section-title">🚚 Suppliers</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Supplier</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody id="suppliersTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page" id="page-sales">
+        <div class="section-title">💰 Sales Tracker</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sale #</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="salesTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page" id="page-reports">
+        <div class="section-title">📈 Reports</div>
+        <div id="reportsStats" class="stats-grid"></div>
+      </div>
+
+      <div class="page" id="page-alerts">
+        <div class="section-title">🔔 Alerts</div>
+        <div id="alertsList"></div>
+      </div>
+
+      <div class="page" id="page-settings">
+        <div class="section-title">⚙️ Settings</div>
+        <div class="chart-box">
+          <p>Restaurant settings yaha aa sakti hai.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

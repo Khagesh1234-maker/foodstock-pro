@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodStock Pro – Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-page">
+  <div class="stripe"></div>
+  <div class="stripe-bottom"></div>
+  <div class="bg login-bg"></div>
+  <div class="bg-overlay"></div>
+  <div class="floaters" id="floaters"></div>
+
+  <div class="card">
+    <div class="logo-area">
+      <span class="logo-icon">🍔</span>
+      <div class="logo-title">FoodStock Pro</div>
+      <div class="logo-sub">Inventory Management System</div>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" type="button">Login</button>
+      <button class="tab-btn" type="button" onclick="window.location.href='register.html'">Register</button>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Email / Username</label>
+        <span class="input-icon">👤</span>
+        <input class="form-input" type="text" id="loginUser" placeholder="admin@foodstock.com" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <span class="input-icon">🔒</span>
+        <input class="form-input" type="password" id="loginPass" placeholder="••••••••" required />
+      </div>
+
+      <div class="remember-row">
+        <label class="check-label">
+          <input type="checkbox" id="rememberMe" /> Remember me
+        </label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-main">
+        <span class="btn-shine"></span>
+        🚀 Sign In to Kitchen
+      </button>
+    </form>
+
+    <div class="divider">or continue with</div>
+
+    <div class="social-row">
+      <a href="#" class="social-btn">🌐 Google</a>
+      <a href="#" class="social-btn">🪟 Microsoft</a>
+    </div>
+
+    <div class="nav-link">
+      Don't have an account? <a href="register.html">Register here</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
